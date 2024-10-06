@@ -25,7 +25,7 @@ public:
 
     }
     void usunZindeks(void) {
-
+            
     }
     void wyswietl(void) {
 
@@ -45,23 +45,19 @@ public:
 
 };
 
-
-
-
-
-
-
-
-
 int main()
 {
-    int a, b;
-
-    cout << " Podaj pierwsza liczbe:" << endl;
-    cin >> a;
-    cout << " Podaj druga liczbe:" << endl;
-    cin >> b;
-    cout << "Wynik dodawania jest rowny: " << a + b;
-
+    ListaDwukierunkowa lista;
+    lista.dodajNApoczatek();
+    lista.dodajNAkoniec();
+    lista.dodajNAindeks();
+    lista.usunZpoczatek();
+    lista.usunZkoniec();
+    lista.usunZindeks();
+    lista.wyswietl();
+    lista.wyswietlodwrotnie();
+    lista.wyswietlnastepny();
+    lista.wyswietlpoprzedni();
+    lista.wyczysc();
     return 0;
 }
