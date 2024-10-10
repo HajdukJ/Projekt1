@@ -5,7 +5,7 @@ using namespace std;
 struct wezly {
     int dane;
     wezly* nastepny;     
-    wezly* poprzedni; // przechowuje na poczatku wskaznik pusty ( zero, nie wskazuje elementu ) null
+    wezly* poprzedni;
 };
 
 class ListaDwukierunkowa {
@@ -16,7 +16,7 @@ private:
 public:
     ListaDwukierunkowa(void): glowa(NULL), ogon(NULL), licznik(0) {}
     ~ListaDwukierunkowa(void) {
-        wyczysc();  //dopisac do metody wyczysc
+        wyczysc();
     }
     void dodajNApoczatek(int x) {
         wezly* element = new wezly;
@@ -50,23 +50,52 @@ public:
 
     }
     void usunZpoczatek(void) {
-
+        wezly* x = glowa;
+        if (x) {
+            glowa = glowa->nastepny;
+            if (!glowa) {
+                ogon = NULL;
+            }
+            else {
+                glowa->poprzedni = NULL;
+            }
+            licznik--;
+            delete x;
+        }
     }
     void usunZkoniec(void) {
-
+        wezly* x = ogon;
+        if (x) {
+            ogon = ogon->poprzedni;
+            if (!ogon) {
+                glowa = NULL;
+            }
+            else {
+                ogon->nastepny = NULL;
+            }
+            licznik--;
+            delete x;
+        }
     }
     void usunZindeks(void) {
             
     }
     void wyswietl(void) {
         wezly* x;
-        cout << "Lista prezentuje sie nastepujaco: " << endl;
+        cout << "Lista wyglada nastepujaco: " << endl;
         for (x = glowa; x; x= x->nastepny) {
             cout << x->dane << " ";
             }
+        cout << endl;
     }
     void wyswietlodwrotnie(void) {
-
+        wezly* x = ogon;
+        cout << "Lista po odwroceniu wyglada nastepujaco: " << endl;
+        while (x) {
+            cout << x->dane << " ";
+            x = x->poprzedni;
+        }
+        cout << endl;
     }
     void wyswietlnastepny(void) {
 
@@ -106,5 +135,8 @@ int main()
     lista.wyswietlpoprzedni();
     lista.wyczysc();
     */
+    lista.wyswietlodwrotnie();
+    lista.wyczysc();
+    lista.wyswietl();
     return 0;
 }
