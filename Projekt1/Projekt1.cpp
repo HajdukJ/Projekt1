@@ -10,11 +10,10 @@ struct wezly {
 
 class ListaDwukierunkowa {
 private:
-    int licznik;
     wezly* glowa;
     wezly* ogon;
 public:
-    ListaDwukierunkowa(void): glowa(NULL), ogon(NULL), licznik(0) {}
+    ListaDwukierunkowa(void): glowa(NULL), ogon(NULL) {}
     ~ListaDwukierunkowa(void) {
         wyczysc();
     }
@@ -30,7 +29,6 @@ public:
             ogon = element;
         }
         glowa = element;
-        licznik++;
     }   
     void dodajNAkoniec(int x) {
         wezly* element = new wezly;
@@ -44,7 +42,6 @@ public:
             glowa = element;
         }
         ogon = element;
-        licznik++;
     }
     void dodajNAindeks(void) {
 
@@ -59,7 +56,6 @@ public:
             else {
                 glowa->poprzedni = NULL;
             }
-            licznik--;
             delete x;
         }
     }
@@ -73,7 +69,6 @@ public:
             else {
                 ogon->nastepny = NULL;
             }
-            licznik--;
             delete x;
         }
     }
@@ -111,7 +106,6 @@ public:
             delete x;
         }
         glowa = NULL;
-        licznik = 0;
     }
 };
 
@@ -121,6 +115,14 @@ int main()
     for (int i = 1; i <= 10; i++) {
         lista.dodajNAkoniec(i);
     }
+    lista.wyswietl();
+    lista.usunZpoczatek();
+    lista.wyswietl();
+    lista.usunZkoniec();
+    lista.wyswietl();
+    lista.dodajNAkoniec(8);
+    lista.wyswietl();
+    lista.dodajNApoczatek(3);
     lista.wyswietl();
     /*
     lista.dodajNApoczatek();
