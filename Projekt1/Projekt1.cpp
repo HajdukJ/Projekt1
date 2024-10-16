@@ -97,8 +97,31 @@ public:
             delete x;
         }
     }
-    void usunZindeks(void) {
-        // dokonczyc
+    void usunZindeks(int pozycja) {
+        if (pozycja < 0) {
+            cout << "Blad." << endl;
+        }
+        if (pozycja == 0) {
+            usunZpoczatek();
+        }
+        wezly* obecny = glowa;
+        int i = 0;
+        while (i < pozycja && obecny != NULL) {
+            obecny = obecny->nastepny;
+            i++;
+        }
+        if (obecny == NULL) {
+            return;
+        }
+        if (obecny->poprzedni) {
+            obecny->poprzedni->nastepny = obecny->nastepny;
+        }
+        if (obecny->nastepny) {
+            obecny->nastepny->poprzedni = obecny->poprzedni;
+        }
+        if (obecny == ogon) {
+            ogon = obecny->poprzedni;
+        }
     }
     void wyswietl(void) {
         wezly* x;
@@ -165,9 +188,7 @@ int main()
     lista.wyswietl();
     lista.usunZpoczatek();
     lista.usunZkoniec();
-    /*
-    lista.usunZindeks();
-    */
+    lista.usunZindeks(3);
     lista.wyswietl();
     lista.dodajNApoczatek(77);
     lista.dodajNAkoniec(82);
@@ -176,6 +197,7 @@ int main()
     lista.wyswietlnastepny();
     lista.wyswietlnastepny();
     lista.wyswietlnastepny();
+    lista.wyswietlpoprzedni();
     lista.wyswietlpoprzedni();
     lista.wyswietlpoprzedni();
     lista.wyswietlodwrotnie();
