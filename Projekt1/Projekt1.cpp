@@ -81,6 +81,7 @@ public:
             else {
                 glowa->poprzedni = NULL;
             }
+            licznik--;
             delete x;
         }
     }
@@ -94,6 +95,7 @@ public:
             else {
                 ogon->nastepny = NULL;
             }
+            licznik--;
             delete x;
         }
     }
@@ -153,6 +155,7 @@ public:
             delete x;
         }
         glowa = NULL;
+        licznik = 0;
     }
 };
 
