@@ -4,7 +4,7 @@ using namespace std;
 
 struct wezly {
     int dane;
-    wezly* nastepny;     
+    wezly* nastepny;
     wezly* poprzedni;
 };
 
@@ -47,6 +47,7 @@ public:
     void dodajNAindeks(int numer, int pozycja) {
         if (pozycja  < 0) {
             cout << "Blad." << endl;
+            return;
         }
         if (pozycja == 0) {
             dodajNApoczatek(numer);
@@ -100,6 +101,7 @@ public:
     void usunZindeks(int pozycja) {
         if (pozycja < 0) {
             cout << "Blad." << endl;
+            return;
         }
         if (pozycja == 0) {
             usunZpoczatek();
@@ -122,6 +124,7 @@ public:
         if (obecny == ogon) {
             ogon = obecny->poprzedni;
         }
+        delete obecny;
     }
     void wyswietl(void) {
         wezly* x;
@@ -143,6 +146,7 @@ public:
     void wyswietlnastepny(void) {
         if (obecny == NULL) {
             obecny = glowa;
+
         }
         else {
             if (obecny->nastepny != NULL) {
