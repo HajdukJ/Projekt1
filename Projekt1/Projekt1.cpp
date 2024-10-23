@@ -1,23 +1,29 @@
 ﻿#include <iostream>
 
 using namespace std;
-
+/// Struktura przedstawiająca węzeł listy dwukierunkowej.
 struct wezly {
-    int dane;
-    wezly* nastepny;
-    wezly* poprzedni;
+    int dane; ///< Przechowuje dane w węźle.
+    wezly* nastepny; ///< Wskaźnik na następny węzeł.
+    wezly* poprzedni; ///< Wskaźnik na poprzedni węzeł.
 };
-
+/**
+ * @brief Klasa reprezentująca listę dwukierunkową.
+ */
 class ListaDwukierunkowa {
 private:
-    wezly* glowa;
-    wezly* ogon;
-    wezly* obecny;
+    wezly* glowa; ///< Wskaźnik na pierwszy element listy.
+    wezly* ogon; ///< Wskaźnik na ostatni element listy.
+    wezly* obecny; ///< Wskaźnik na obecny element na liście.
 public:
+    /// Domyślny konstruktor listy dwukierunkowej.
     ListaDwukierunkowa(void): glowa(NULL), ogon(NULL), obecny(NULL) {}
+    /// Destruktor listy dwukierunkowej, usuwa on wszystkie elementy z listy.
     ~ListaDwukierunkowa(void) {
         wyczysc();
     }
+    /// Dodaje element na początek listy.
+    /// @param x Wartość do dodania na początku.
     void dodajNApoczatek(int x) {
         wezly* element = new wezly;
         element->dane = x;
@@ -31,6 +37,8 @@ public:
         }
         glowa = element;
     }   
+    /// Dodaje element na koniec listy.
+    /// @param x Wartość do dodania na końcu.
     void dodajNAkoniec(int x) {
         wezly* element = new wezly;
         element->dane = x;
@@ -44,6 +52,9 @@ public:
         }
         ogon = element;
     }
+    /// Dodaje element na wybranym indeksie w liście.
+    /// @param numer Wartość do dodania.
+    /// @param pozycja Indeks, na którym ma zostać dodany element.
     void dodajNAindeks(int numer, int pozycja) {
         if (pozycja  < 0) {
             cout << "Blad." << endl;
@@ -72,6 +83,7 @@ public:
             }
         }
     }
+    /// Usuwa element z początku listy.
     void usunZpoczatek(void) {
         wezly* x = glowa;
         if (x) {
@@ -85,6 +97,7 @@ public:
             delete x;
         }
     }
+    /// Usuwa element z końca listy.
     void usunZkoniec(void) {
         wezly* x = ogon;
         if (x) {
@@ -98,6 +111,8 @@ public:
             delete x;
         }
     }
+    /// Usuwa element z określonego indeksu w liście.
+    /// @param pozycja Indeks, z którego ma zostać usunięty element.
     void usunZindeks(int pozycja) {
         if (pozycja < 0) {
             cout << "Blad." << endl;
@@ -126,6 +141,7 @@ public:
         }
         delete obecny;
     }
+    /// Wyświetla elementy listy w kolejności od początku do końca.
     void wyswietl(void) {
         wezly* x;
         cout << "Lista wyglada nastepujaco: " << endl;
@@ -134,6 +150,7 @@ public:
             }
         cout << endl;
     }
+    /// Wyświetla elementy listy w odwrotnej kolejności, od końca do początku.
     void wyswietlodwrotnie(void) {
         wezly* x = ogon;
         cout << "Lista po odwroceniu wyglada nastepujaco: " << endl;
@@ -143,6 +160,7 @@ public:
         }
         cout << endl;
     }
+    /// Wyświetla kolejny element w stosunku do obecnego elementu listy.
     void wyswietlnastepny(void) {
         if (obecny == NULL) {
             obecny = glowa;
@@ -158,6 +176,7 @@ public:
         }
         cout << "Nastepny element to: " << obecny->dane << endl;
     }
+    /// Wyświetla poprzedni element w stosunku do obecnego elementu listy.
     void wyswietlpoprzedni(void) {
         if (obecny == NULL) {
             cout << "Poczatek listy, brak poprzednika." << endl;
@@ -172,6 +191,7 @@ public:
             cout << "Poczatek listy, brak poprzednika." << endl;
         }
     }
+    /// Czyści listę, usuwając wszystkie elementy.
     void wyczysc(void) {
         wezly* x;
         while (ogon) {
